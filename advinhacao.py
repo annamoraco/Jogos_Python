@@ -8,8 +8,10 @@ total_tentativas = 5
 for rodada in range(1,total_tentativas + 1) :
 
     print(f"Tentativa {rodada} de {total_tentativas}")
-    chute = int(input("Digite um número: "))
-    print("Você digitou:",chute)
+    chute = int(input("Digite um número entre 0 e 100: "))
+
+    while (chute < 0 or chute > 100) :
+        chute = int(input("Valor inválido. Você deve digitar um número entre 0 e 100: "))
 
     acertou = chute == numero_secreto
 
@@ -22,4 +24,3 @@ for rodada in range(1,total_tentativas + 1) :
         print("Você errou. O número secreto é maior.")
 
 print("Fim de jogo")
-range()
