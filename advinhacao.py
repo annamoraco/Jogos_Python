@@ -8,7 +8,13 @@ chute = int(input("Digite um número: "))
 
 print("Você digitou:",chute)
 
-if numero_secreto == chute:
+acertou = chute == numero_secreto
+
+if (acertou):
     print("Você acertou!")
+elif (chute > numero_secreto):
+    print("Você errou. O número secreto é menor.")
 else:
-    print("Você errou.")
+    print("Você errou. O número secreto é maior.")
+
+print("Fim de jogo")
