@@ -11,23 +11,33 @@ def jogar():
 
     print(letras_certas)
 
+    letras_erradas = []
+    tentativas = 6
     acertou = False
     enforcou = False
 
     while (not enforcou and not acertou):
         chute = input("Digite uma letra: ").strip().upper()
 
-        index = 0
-        for letra in palavra_secreta:
-            if(chute == letra):
-                print(f"Encontrei a letra {letra} na posiçào {index}")
-                letras_certas[index] = chute
-            index = index + 1
+        if chute in letras_erradas:
+            continue
+        elif chute not in palavra_secreta :
+            letras_erradas.append(chute)
+        else:
+            index = 0
+            for letra in palavra_secreta:
+                if(chute == letra):
+                    letras_certas[index] = chute
+                index += 1
         print(letras_certas)
 
-        if "_" not in letras_certas :
-            acertou = True
-            print("Você ganhou!!!")
+        acertou = "_" not in letras_certas
+        enforcou = len(letras_erradas) >= tentativas
+
+    if acertou:
+        print("Você ganhou!!!")
+    elif enforcou:
+        print("Você perdeu.")
 
     print("Fim de Jogo")
 
