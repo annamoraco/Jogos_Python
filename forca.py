@@ -1,13 +1,27 @@
+import random
+
 def jogar():
 
-    print("***************************")
+    print("\n***************************")
     print("Bem vindo ao jogo da Forca!")
-    print("***************************")
+    print("***************************\n")
 
-    palavra_secreta = "banana".upper()
+    arquivo = open("palavras.txt","r")
+    numero_palavras = int(arquivo.readline())
+    linha_palavra = random.randrange(1, numero_palavras+1)
+    index = 1
+    for linha in arquivo:
+        if index == linha_palavra:
+            palavra_secreta = linha.strip().upper()
+            break
+        index += 1
+
+    arquivo.close()
+
+    #palavra_secreta = "banana".upper()
     letras_certas = ["_" for letras in palavra_secreta]
 
-    print(letras_certas)
+    print(letras_certas,"\n")
 
     letras_erradas = []
     tentativas = 6
@@ -27,15 +41,15 @@ def jogar():
                 if(chute == letra):
                     letras_certas[index] = chute
                 index += 1
-        print(letras_certas)
+        print("\n",letras_certas,"\n")
 
         acertou = "_" not in letras_certas
         enforcou = len(letras_erradas) >= tentativas
 
     if acertou:
-        print("Você ganhou!!!")
+        print("\nVocê ganhou!!!")
     elif enforcou:
-        print("Você perdeu.")
+        print("\nVocê perdeu.")
 
     print("Fim de Jogo")
 
